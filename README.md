@@ -11,6 +11,30 @@
 校验 → 重复 → 冲突 → 用途 → 等级分流
 ```
 
+```mermaid
+flowchart TD
+    A[一条主张] --> V{① 校验<br/>必填/实体/日期/出处/等级}
+    V -- 不过 --> R1[拒收]
+    V -- 过 --> D{② 重复判<br/>同实体+同关系+同值+区间重叠}
+    D -- 命中 --> R2[不新建<br/>去改已有那条]
+    D -- 未命中 --> C{③ 冲突判<br/>同维度+值不同+区间重叠}
+    C -- 冲突 --> R3[进队列<br/>pending / needs_review]
+    C -- 不冲突 --> U{④ 用途闸<br/>有 use_when 吗}
+    U -- 没有 --> R4[候选区 candidate]
+    U -- 有 --> L{⑤ 等级分流}
+    L -- V3 --> R5[N- 候选]
+    L -- V4 --> R6[refuted]
+    L -- V0-V2 --> R7[active 入主库]
+
+    style R1 fill:#ffe8e8,stroke:#e0a0a0
+    style R2 fill:#ffe8e8,stroke:#e0a0a0
+    style R3 fill:#fff6dd,stroke:#e0c060
+    style R4 fill:#fff6dd,stroke:#e0c060
+    style R7 fill:#e8f7ef,stroke:#8ecdaa
+```
+
+![五步过闸](docs/流程图.svg)
+
 顺序本身就是逻辑：**先判重、再判冲突，最后才谈等级**。反过来会把「重复」当「冲突」塞进队列。
 
 ---
