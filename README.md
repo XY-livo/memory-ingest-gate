@@ -153,6 +153,10 @@ python3 src/gate.py selftest
 
 ---
 
+## 相关文章
+
+- [为什么给 AI 的记忆装一个「门」](docs/为什么给AI的记忆装个门.md)（可直接贴到知乎/V2EX/掘金）
+
 ## License
 
 MIT
