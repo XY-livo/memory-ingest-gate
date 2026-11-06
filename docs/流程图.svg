@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="620" viewBox="0 0 880 620" font-family="'Microsoft YaHei',system-ui,-apple-system,sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#7a869a"/>
+    </marker>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#d94f4f"/>
+    </marker>
+    <marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2f9e6f"/>
+    </marker>
+  </defs>
+  <rect width="880" height="620" fill="#ffffff"/>
+  <text x="30" y="42" font-size="20" font-weight="700" fill="#1f2733">入库闸门 · 五步过闸（顺序本身就是逻辑）</text>
+  <text x="30" y="66" font-size="13" fill="#7a869a">一条「看起来像结论」的东西，必须按这个顺序被逼到可检验的形态</text>
+
+  <!-- 输入 -->
+  <rect x="30" y="92" width="150" height="56" rx="10" fill="#eef3ff" stroke="#4a7dff"/>
+  <text x="105" y="116" font-size="14" text-anchor="middle" fill="#1f2733">一条主张</text>
+  <text x="105" y="136" font-size="11" text-anchor="middle" fill="#5b6577">layer/subject/object…</text>
+
+  <!-- 五步 -->
+  <g>
+    <rect x="240" y="82" width="240" height="52" rx="8" fill="#f7f9fc" stroke="#c8d2e0"/>
+    <text x="256" y="104" font-size="14" font-weight="600" fill="#1f2733">① 校验</text>
+    <text x="256" y="122" font-size="11" fill="#5b6577">必填 / 实体已登记 / 日期 / source_ref / 等级 / V0 定级人</text>
+
+    <rect x="240" y="158" width="240" height="52" rx="8" fill="#f7f9fc" stroke="#c8d2e0"/>
+    <text x="256" y="180" font-size="14" font-weight="600" fill="#1f2733">② 重复判</text>
+    <text x="256" y="198" font-size="11" fill="#5b6577">同实体 + 同关系 + 同值 + 区间重叠</text>
+
+    <rect x="240" y="234" width="240" height="52" rx="8" fill="#f7f9fc" stroke="#c8d2e0"/>
+    <text x="256" y="256" font-size="14" font-weight="600" fill="#1f2733">③ 冲突判</text>
+    <text x="256" y="274" font-size="11" fill="#5b6577">同实体 + 同关系 + 同维度 + 值不同 + 重叠</text>
+
+    <rect x="240" y="310" width="240" height="52" rx="8" fill="#f7f9fc" stroke="#c8d2e0"/>
+    <text x="256" y="332" font-size="14" font-weight="600" fill="#1f2733">④ 用途闸</text>
+    <text x="256" y="350" font-size="11" fill="#5b6577">有没有写 use_when（将来什么时候用）</text>
+
+    <rect x="240" y="386" width="240" height="52" rx="8" fill="#f7f9fc" stroke="#c8d2e0"/>
+    <text x="256" y="408" font-size="14" font-weight="600" fill="#1f2733">⑤ 等级分流</text>
+    <text x="256" y="426" font-size="11" fill="#5b6577">V3 候选 / V4 证伪 / 其余 active</text>
+  </g>
+
+  <!-- 主链路箭头 -->
+  <path d="M180,120 L238,108" stroke="#7a869a" stroke-width="1.6" fill="none" marker-end="url(#a)"/>
+  <path d="M360,134 L360,156" stroke="#7a869a" stroke-width="1.6" fill="none" marker-end="url(#a)"/>
+  <path d="M360,210 L360,232" stroke="#7a869a" stroke-width="1.6" fill="none" marker-end="url(#a)"/>
+  <path d="M360,286 L360,308" stroke="#7a869a" stroke-width="1.6" fill="none" marker-end="url(#a)"/>
+  <path d="M360,362 L360,384" stroke="#7a869a" stroke-width="1.6" fill="none" marker-end="url(#a)"/>
+
+  <!-- 分支：拒收 -->
+  <path d="M480,108 L560,108" stroke="#d94f4f" stroke-width="1.6" fill="none" marker-end="url(#ar)"/>
+  <rect x="566" y="86" width="270" height="46" rx="8" fill="#fff2f2" stroke="#f0b8b8"/>
+  <text x="580" y="106" font-size="12.5" font-weight="600" fill="#a83232">拒收（不入库）</text>
+  <text x="580" y="124" font-size="11" fill="#8a4a4a">缺必填 / 实体未登记 / 出处定位不到 / V0 越权</text>
+
+  <!-- 分支：重复 -->
+  <path d="M480,184 L560,184" stroke="#d94f4f" stroke-width="1.6" fill="none" marker-end="url(#ar)"/>
+  <rect x="566" y="162" width="270" height="46" rx="8" fill="#fff2f2" stroke="#f0b8b8"/>
+  <text x="580" y="182" font-size="12.5" font-weight="600" fill="#a83232">不新建，去改那一条</text>
+  <text x="580" y="200" font-size="11" fill="#8a4a4a">返回已有 id —— 重复是检索质量的头号杀手</text>
+
+  <!-- 分支：冲突 -->
+  <path d="M480,260 L560,260" stroke="#e0a100" stroke-width="1.6" fill="none" marker-end="url(#a)"/>
+  <rect x="566" y="232" width="270" height="58" rx="8" fill="#fffbea" stroke="#e8d48a"/>
+  <text x="580" y="252" font-size="12.5" font-weight="600" fill="#8a6a00">进队列，等人裁决</text>
+  <text x="580" y="270" font-size="11" fill="#7a6a2a">pending → keep-a / keep-b / keep-both</text>
+  <text x="580" y="284" font-size="11" fill="#a83232">任一方是 V0 → needs_review（必须人审）</text>
+
+  <!-- 分支：用途 -->
+  <path d="M480,336 L560,336" stroke="#e0a100" stroke-width="1.6" fill="none" marker-end="url(#a)"/>
+  <rect x="566" y="314" width="270" height="46" rx="8" fill="#fffbea" stroke="#e8d48a"/>
+  <text x="580" y="334" font-size="12.5" font-weight="600" fill="#8a6a00">候选区（只作参考）</text>
+  <text x="580" y="352" font-size="11" fill="#7a6a2a">写不出 use_when = 流水账，不进主库</text>
+
+  <!-- 分支：等级 -->
+  <path d="M480,412 L560,412" stroke="#2f9e6f" stroke-width="1.6" fill="none" marker-end="url(#ag)"/>
+  <rect x="566" y="386" width="270" height="54" rx="8" fill="#f1fbf6" stroke="#a9dcc4"/>
+  <text x="580" y="406" font-size="12.5" font-weight="600" fill="#1e7a52">入主库 claims/</text>
+  <text x="580" y="424" font-size="11" fill="#2f6f57">active（V0-V2）· V3 → N- 候选 · V4 → refuted</text>
+
+  <!-- 底部三条硬规则 -->
+  <rect x="30" y="470" width="820" height="120" rx="10" fill="#f7f9fc" stroke="#dbe3ee"/>
+  <text x="46" y="494" font-size="13" font-weight="700" fill="#1f2733">三条不许动的规则</text>
+  <text x="46" y="518" font-size="12" fill="#41506b">① 升级一次只许一级（V3→V2→V1→V0）；跳级 = 让「听说」一夜变成「证实」</text>
+  <text x="46" y="540" font-size="12" fill="#41506b">② 降级只有人能降；AI 心情会变（换模型/换提示词/上下文截断），历史一旦可跳就不再是历史</text>
+  <text x="46" y="562" font-size="12" fill="#41506b">③ V0 卷入冲突时，「条件不同」不能当并存的理由 —— 规则级冲突被洗过去，是最难发现的腐烂</text>
+  <text x="46" y="584" font-size="11" fill="#7a869a">库只装「下次还用得上的判断」，不装过程。过程会过期，结论不会。</text>
+</svg>
